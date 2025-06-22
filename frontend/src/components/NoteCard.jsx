@@ -3,7 +3,7 @@ import { Link } from "react-router";
 import { formatDate } from "../lib/utils";
 import api from "../lib/axios";
 import toast from "react-hot-toast";
-import TagBadge from "./TagBadge"; // ✅ import the nested component
+import TagBadge from "./TagBadge"; // import the nested component
 
 const NoteCard = ({ note, setNotes }) => {
   const handleDelete = async (e, id) => {
@@ -31,7 +31,7 @@ const NoteCard = ({ note, setNotes }) => {
         {/*  */}
         <div className="flex items-center justify-between">
           <h3 className="card-title text-base-content">{note.title}</h3>
-          <TagBadge tag={note.tag} /> {/* nested here */}
+          <TagBadge tag={note.tag || "Untagged"} />
         </div>
 
         <p className="text-base-content/70 line-clamp-3">{note.content}</p>
