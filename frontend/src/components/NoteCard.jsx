@@ -3,16 +3,17 @@ import { Link } from "react-router";
 import { formatDate } from "../lib/utils";
 import api from "../lib/axios";
 import toast from "react-hot-toast";
+import TagBadge from "./TagBadge"; // ✅ import the nested component
 
 const NoteCard = ({ note, setNotes }) => {
   const handleDelete = async (e, id) => {
-    e.preventDefault(); // get rid of the navigation behaviour
+    e.preventDefault();
 
     if (!window.confirm("Are you sure you want to delete this note?")) return;
 
     try {
       await api.delete(`/notes/${id}`);
-      setNotes((prev) => prev.filter((note) => note._id !== id)); // get rid of the deleted one
+      setNotes((prev) => prev.filter((note) => note._id !== id));
       toast.success("Note deleted successfully");
     } catch (error) {
       console.log("Error in handleDelete", error);
@@ -27,7 +28,12 @@ const NoteCard = ({ note, setNotes }) => {
       border-t-4 border-solid border-[#00FF9D]"
     >
       <div className="card-body">
-        <h3 className="card-title text-base-content">{note.title}</h3>
+        {/*  */}
+        <div className="flex items-center justify-between">
+          <h3 className="card-title text-base-content">{note.title}</h3>
+          <TagBadge tag={note.tag} /> {/* nested here */}
+        </div>
+
         <p className="text-base-content/70 line-clamp-3">{note.content}</p>
         <div className="card-actions justify-between items-center mt-4">
           <span className="text-sm text-base-content/60">
@@ -47,4 +53,5 @@ const NoteCard = ({ note, setNotes }) => {
     </Link>
   );
 };
+
 export default NoteCard;
