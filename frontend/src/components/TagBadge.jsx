@@ -1,13 +1,13 @@
 import React from 'react';
 
 const TagBadge = ({ tag }) => {
-  if (!tag) tag = "Untagged";
-
+  const displayTag = tag || "No Tag";
   return (
     <span className="badge badge-accent text-xs font-medium px-2 py-1">
-      {tag}
+      {displayTag}
     </span>
   );
 };
+
 
 export default TagBadge;

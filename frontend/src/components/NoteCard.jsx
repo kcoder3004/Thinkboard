@@ -31,7 +31,7 @@ const NoteCard = ({ note, setNotes }) => {
         {/*  */}
         <div className="flex items-center justify-between">
           <h3 className="card-title text-base-content">{note.title}</h3>
-          <TagBadge tag={note.tag || "Untagged"} />
+          <TagBadge tag={note.tag} />
         </div>
 
         <p className="text-base-content/70 line-clamp-3">{note.content}</p>
